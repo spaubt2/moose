@@ -227,7 +227,6 @@ public:
    * @param[out] dh_dv   derivative of specific enthalpy w.r.t. specific volume
    * @param[out] dh_de   derivative of specific enthalpy w.r.t. specific energy
    */
-   */
   virtual void h_from_v_e(Real v, Real e, Real & h, Real & dh_dv, Real & dh_de) const;
 
   /**
