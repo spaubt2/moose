@@ -77,17 +77,18 @@ public:
    * @param[in] rho density (kg/m$^3$)
    * @return[out] temperature (K)
    */
-   virtual Real T_from_p_rho(Real p, Real rho) const;
+  virtual Real T_from_p_rho(Real p, Real rho) const;
 
   /**
-  * Density and its derivatives from pressure and temperature
-  * @param[in] p          pressure (Pa)
-  * @param[in] rho       density (kg/m$^3$)
-  * @param[out] T          temperature (K)
-  * @param[out] dT_dp   derivative of temperature w.r.t. temperature
-  * @param[out] dT_drho   derivative of temperature w.r.t. density
-  */
-  virtual void T_from_p_rho(Real pressure, Real rho, Real & temperature, Real & dT_dp, Real & dT_drho) const;
+   * Density and its derivatives from pressure and temperature
+   * @param[in] p          pressure (Pa)
+   * @param[in] rho       density (kg/m$^3$)
+   * @param[out] T          temperature (K)
+   * @param[out] dT_dp   derivative of temperature w.r.t. temperature
+   * @param[out] dT_drho   derivative of temperature w.r.t. density
+   */
+  virtual void
+  T_from_p_rho(Real pressure, Real rho, Real & temperature, Real & dT_dp, Real & dT_drho) const;
 
   /**
    * Isobaric specific heat from specific volume and specific internal energy
@@ -147,8 +148,7 @@ public:
    * @return dynamic viscosity (Pa.s)
    */
   virtual Real mu_from_v_e(Real v, Real e) const override;
-  virtual void
-  mu_from_v_e(Real v, Real e, Real & mu, Real & dmu_dv, Real & dmu_de) const override;
+  virtual void mu_from_v_e(Real v, Real e, Real & mu, Real & dmu_dv, Real & dmu_de) const override;
 
   /**
    * Thermal conductivity from specific volume and specific internal energy
@@ -158,8 +158,7 @@ public:
    * @return thermal conductivity (W/m.K)
    */
   virtual Real k_from_v_e(Real v, Real e) const override;
-  virtual void
-  k_from_v_e(Real v, Real e, Real & k, Real & dk_dv, Real & dk_de) const override;
+  virtual void k_from_v_e(Real v, Real e, Real & k, Real & dk_dv, Real & dk_de) const override;
 
   /**
    * Density from pressure and temperature
@@ -210,16 +209,16 @@ public:
    * @param[in] T   temperature (K)
    * @return specific enthalpy (J/kg)
    */
-   virtual Real h_from_v_e(Real v, Real e) const;
-   virtual void h_from_v_e(Real v, Real e, Real & h, Real & dh_dv, Real & dh_de) const;
+  virtual Real h_from_v_e(Real v, Real e) const;
+  virtual void h_from_v_e(Real v, Real e, Real & h, Real & dh_dv, Real & dh_de) const;
 
-   /**
-    * Pressure from specific volume and specific internal energy
-    *
-    * @param[in] v   specific volume (m$^3$/kg)
-    * @param[in] e   specific internal energy (J/kg)
-    * @return specific enthalpy (J/kg)
-    */
+  /**
+   * Pressure from specific volume and specific internal energy
+   *
+   * @param[in] v   specific volume (m$^3$/kg)
+   * @param[in] e   specific internal energy (J/kg)
+   * @return specific enthalpy (J/kg)
+   */
   virtual Real h_from_p_T(Real p, Real T) const override;
 
   /**
@@ -243,11 +242,11 @@ public:
   virtual Real e_from_p_T(Real p, Real T) const override;
 
   /**
-  * Density and its derivatives from pressure and temperature
-  * @param[in] p          pressure (Pa)
-  * @param[in] rho       density (kg/m$^3$)
-  * @param[out] e       specific internal energy (J/kg)
-  */
+   * Density and its derivatives from pressure and temperature
+   * @param[in] p          pressure (Pa)
+   * @param[in] rho       density (kg/m$^3$)
+   * @param[out] e       specific internal energy (J/kg)
+   */
   virtual Real e_from_p_rho(Real p, Real rho) const override;
 
   /**
@@ -333,7 +332,8 @@ public:
    * @param[out] dmu_dp   derivative of viscosity wrt pressure
    * @param[out] dmu_dT   derivative of viscosity wrt temperature
    */
-  virtual void mu_from_p_T(Real p, Real T, Real & mu, Real & dmu_drho, Real & dmu_dT) const override;
+  virtual void
+  mu_from_p_T(Real p, Real T, Real & mu, Real & dmu_drho, Real & dmu_dT) const override;
 
 private:
   const Real _T_mo;
