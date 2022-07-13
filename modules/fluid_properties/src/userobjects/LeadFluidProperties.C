@@ -84,7 +84,6 @@ LeadFluidProperties::p_from_v_e(Real v, Real e, Real & /*p*/, Real & dp_dv, Real
 {
   Real h, dh_dv, dh_de;
   h_from_v_e(v, e, h, dh_dv, dh_de);
-  std::cout << "p_from_v_e " << std::endl;
   dp_dv = (v * dh_dv - h + e) / v / v;
   dp_de = (dh_de - 1) / v;
 }
@@ -109,7 +108,6 @@ LeadFluidProperties::mu_from_v_e(Real v, Real e, Real & mu, Real & dmu_dv, Real 
 Real
 LeadFluidProperties::k_from_v_e(Real v, Real e) const
 {
-  std::cout << "non d of k_from_v_e " << std::endl;
   Real temperature = T_from_v_e(v, e);
   return 0.011 * temperature + 9.2;
 }
