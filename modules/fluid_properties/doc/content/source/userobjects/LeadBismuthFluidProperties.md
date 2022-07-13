@@ -42,6 +42,11 @@ Table of properties, equations and citation of where in [!citep](Fazio).
 | Bulk Modules $(\frac{N}{m^2})$ | $(38.02 - 1.296 \times 10^{-2}T + 1.320 \times 10^{-6}T^2)10^9$ |  2.44  |
 | Speed of Sound  (c) | $\sqrt{\frac {Bulk Modules}{\rho}}$ |  NA  |
 
+## Range of validity
+
+The LeadFluidProperties UserObject is valid for:
+
+ 698 K $\le$ T $\le$ 1300 K
 
 !syntax parameters /Modules/FluidProperties/LeadBismuthFluidProperties
 

@@ -24,7 +24,7 @@ Table for LeadFluidProperties Uncertainties:
 | Thermal Conductivity | 15% |
 | Isobaric Specific Heat | 5% |
 
-## Properties Associated Equations and Figure #  
+## Properties Associated Equations and Reference
 
 Table of properties, equations and citation of where in [!citep](Fazio).
 
@@ -41,6 +41,11 @@ Table of properties, equations and citation of where in [!citep](Fazio).
 | Bulk Modules $(\frac{N}{m^2})$ | $(43.50 - 1.552 \times 10^{-2}T + 1.622 \times 10^{-6}T^2)10^9$ |  2.42  |
 | Speed of Sound  (c) | $\sqrt{\frac {Bulk Modules}{\rho}}$ |  NA  |
 
+## Range of validity
+
+The properties defined by `LeadFluidProperties` are valid for:
+
+ - 600 K $\le$ T $\le$ 1800 K
 
 !syntax parameters /Modules/FluidProperties/LeadFluidProperties
 

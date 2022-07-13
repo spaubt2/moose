@@ -12,7 +12,7 @@
 #include "SinglePhaseFluidProperties.h"
 
 /**
- * Fluid properties for 2LiF-BeF2 (Lead) \cite richard.
+ * Fluid properties for (Lead) \cite Fazio.
  */
 class LeadFluidProperties : public SinglePhaseFluidProperties
 {
@@ -24,11 +24,6 @@ public:
   LeadFluidProperties(const InputParameters & parameters);
 
   virtual std::string fluidName() const override;
-
-  virtual Real bulk_modulus_from_p_T(Real p, Real T) const;
-  virtual Real c_from_v_e(Real v, Real e) const override;
-  virtual DualReal c_from_v_e(const DualReal & v, const DualReal & e) const override;
-
   /**
    * Pressure from specific volume and specific internal energy
    *
@@ -199,10 +194,10 @@ public:
   virtual Real v_from_p_T(Real p, Real T) const override;
 
   /**
-   * Specific volume and its derivatives from pressure and temperature
+   * Specific volume and its derivatives from specific volume and specific internal energy
    *
-   * @param[in] p          pressure (Pa)
-   * @param[in] T          temperature (K)
+   * @param[in] v   specific volume (m$^3$/kg)
+   * @param[in] e   specific internal energy (J/kg)
    * @param[out] v         specific volume (m$^3$/kg)
    * @param[out] dv_dp     derivative of specific volume w.r.t. pressure
    * @param[out] dv_dT     derivative of specific volume w.r.t. temperature
@@ -220,7 +215,7 @@ public:
   virtual Real h_from_p_T(Real p, Real T) const override;
 
   /**
-   * Specific enthalpy and its derivatives from pressure and temperature
+   * Specific enthalpy and its derivatives from specific volume and specific internal energy
    *
    * @param[in] v   specific volume (m$^3$/kg)
    * @param[in] e   specific internal energy (J/kg)
@@ -347,6 +342,34 @@ public:
    */
   virtual void
   mu_from_p_T(Real p, Real T, Real & mu, Real & dmu_drho, Real & dmu_dT) const override;
+
+  /**
+   * Bulk Modulus from pressure and temperature
+   *
+   * @param p   pressure (Pa)
+   * @param T   temperature (K)
+   * @return Bulk Modules (N/m^2)
+   */
+  virtual Real bulk_modulus_from_p_T(Real p, Real T) const;
+  /**
+   * Speed of Sound from specific volume and specific internal energy
+   *
+   * @param[in] v   specific volume (m$^3$/kg)
+   * @param[in] e   specific internal energy (J/kg)
+   * @return [out] c speed of sound (m/s)
+   */
+  virtual Real c_from_v_e(Real v, Real e) const override;
+
+  /**
+   * Speed of Sound from specific volume and specific internal energy
+   *
+   * @param[in] v   specific volume (m$^3$/kg)
+   * @param[in] e   specific internal energy (J/kg)
+   * @param [out] c speed of sound (m/s)
+   * @param[out] dc_dv   derivative of speed of sound wrt specific volume
+   * @param[out] dc_de   derivative of speed of sound wrt specific specific internal energy
+   */
+  virtual DualReal c_from_v_e(const DualReal & v, const DualReal & e) const override;
 
 private:
   const Real _T_mo;

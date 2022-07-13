@@ -17,6 +17,7 @@ LeadBismuthFluidProperties::validParams()
   InputParameters params = SinglePhaseFluidProperties::validParams();
   params.addParam<Real>("T_mo", 398, "Melting Point of LeadBismuth");
   params.addClassDescription("Fluid properties for LeadBismuth");
+
   return params;
 }
 

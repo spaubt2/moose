@@ -17,13 +17,7 @@ LeadFluidProperties::validParams()
   InputParameters params = SinglePhaseFluidProperties::validParams();
   params.addParam<Real>("T_mo", 600.6, "Melting Point of Lead");
   params.addClassDescription("Fluid properties for Lead");
-  return params;
-  // params.addRangeCheckedParam<Real>(
-  //     "drho_dp",
-  //     1.7324E-7,
-  //     "drho_dp > 0.0",
-  //     "derivative of density with respect to pressure (at constant temperature)");
-  // params.addClassDescription("Fluid properties for Lead");
+
   return params;
 }
 
