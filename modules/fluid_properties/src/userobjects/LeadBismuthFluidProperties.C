@@ -16,23 +16,12 @@ LeadBismuthFluidProperties::validParams()
 {
   InputParameters params = SinglePhaseFluidProperties::validParams();
   params.addParam<Real>("T_mo", 398, "Melting Point of LeadBismuth");
-  // params.addRangeCheckedParam<Real>(
-  //     "drho_dp",
-  //     1.7324E-7,
-  //     "drho_dp > 0.0",
-  //     "derivative of density with respect to pressure (at constant temperature)");
-  // params.addClassDescription("Fluid properties for LeadBismuth");
+  params.addClassDescription("Fluid properties for LeadBismuth");
   return params;
 }
 
 LeadBismuthFluidProperties::LeadBismuthFluidProperties(const InputParameters & parameters)
   : SinglePhaseFluidProperties(parameters), _T_mo(getParam<Real>("T_mo"))
-// _drho_dp(getParam<Real>("drho_dp")),
-// _drho_dT(-0.4884),
-// _p_atm(101325.0),
-// _cp(2416.0),
-// _c0(2413.0),
-// _dp_dT_at_constant_v(-_drho_dT / _drho_dp)
 {
 }
 
