@@ -49,6 +49,21 @@ LeadBismuthFluidProperties::molarMass() const
 }
 
 Real
+LeadBismuthFluidProperties::bulk_modulus_from_p_T(Real /*p*/, Real T) const
+{
+  return (38.02 - 1.296e-2 * T + 1.320 - 6 * T * T) * MathUtils::pow(10, 9);
+}
+
+Real
+LeadBismuthFluidProperties::c_from_v_e(Real v, Real e) const
+{
+  Real Temperature = T_from_v_e(v, e);
+  Real pressure = p_from_v_e(v, e);
+  return std::sqrt(bulk_modulus_from_p_T(pressure, Temperature) /
+                   rho_from_p_T(pressure, Temperature));
+}
+
+Real
 LeadBismuthFluidProperties::p_from_v_e(Real v, Real e) const
 {
   Real h = h_from_v_e(v, e);
@@ -181,6 +196,18 @@ LeadBismuthFluidProperties::rho_from_p_T(
     Real pressure, Real temperature, Real & rho, Real & drho_dp, Real & drho_dT) const
 {
   rho = rho_from_p_T(pressure, temperature);
+  drho_dp = 0;
+  drho_dT = -1.293;
+}
+
+void
+LeadBismuthFluidProperties::rho_from_p_T(const DualReal & pressure,
+                                         const DualReal & temperature,
+                                         DualReal & rho,
+                                         DualReal & drho_dp,
+                                         DualReal & drho_dT) const
+{
+  rho = SinglePhaseFluidProperties::rho_from_p_T(pressure, temperature);
   drho_dp = 0;
   drho_dT = -1.293;
 }

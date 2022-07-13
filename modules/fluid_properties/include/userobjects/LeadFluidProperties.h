@@ -25,6 +25,10 @@ public:
 
   virtual std::string fluidName() const override;
 
+  virtual Real bulk_modulus_from_p_T(Real p, Real T) const;
+  virtual Real c_from_v_e(Real v, Real e) const override;
+  virtual DualReal c_from_v_e(const DualReal & v, const DualReal & e) const override;
+
   /**
    * Pressure from specific volume and specific internal energy
    *
@@ -32,6 +36,7 @@ public:
    * @param[in] e   specific internal energy (J/kg)
    * @return pressure (Pa)
    */
+  using SinglePhaseFluidProperties::p_from_v_e;
   virtual Real p_from_v_e(Real v, Real e) const override;
 
   /**
@@ -44,11 +49,6 @@ public:
    * @param[out] dp_de   derivative of pressure w.r.t. specific internal energy
    */
   virtual void p_from_v_e(Real v, Real e, Real & p, Real & dp_dv, Real & dp_de) const override;
-  virtual void p_from_v_e(const DualReal & v,
-                          const DualReal & e,
-                          DualReal & p,
-                          DualReal & dp_dv,
-                          DualReal & dp_de) const override;
 
   /**
    * Temperature from specific volume and specific internal energy
@@ -57,6 +57,7 @@ public:
    * @param[in] e   specific internal energy (J/kg)
    * @return temperature (K)
    */
+  using SinglePhaseFluidProperties::T_from_v_e;
   virtual Real T_from_v_e(Real v, Real e) const override;
 
   /**
@@ -168,6 +169,7 @@ public:
    * @param[in] T   temperature (K)
    * @return density (kg/m$^3$)
    */
+  using SinglePhaseFluidProperties::rho_from_p_T;
   virtual Real rho_from_p_T(Real p, Real T) const override;
 
   /**
@@ -195,8 +197,6 @@ public:
    * @return specific volume (m$^3$/kg)
    */
   virtual Real v_from_p_T(Real p, Real T) const override;
-  virtual DualReal v_from_p_T(const DualReal & pressure,
-                              const DualReal & temperature) const override;
 
   /**
    * Specific volume and its derivatives from pressure and temperature
@@ -267,6 +267,8 @@ public:
    * @return specific internal energy (J/kg)
    */
   virtual Real e_from_p_rho(Real p, Real rho) const override;
+  virtual void
+  e_from_p_rho(Real p, Real rho, Real & e, Real & de_dp, Real & de_drho) const override;
 
   /**
    * Specific internal energy and its derivatives from pressure and temperature
