@@ -12,7 +12,7 @@
 #include "SinglePhaseFluidProperties.h"
 
 /**
- * Fluid properties for 2LiF-BeF2 (LeadBismuth) \cite richard.
+ *  Fluid properties for (Lead) \cite Fazio.
  */
 class LeadBismuthFluidProperties : public SinglePhaseFluidProperties
 {
@@ -22,9 +22,6 @@ public:
   static InputParameters validParams();
 
   LeadBismuthFluidProperties(const InputParameters & parameters);
-
-  virtual Real bulk_modulus_from_p_T(Real p, Real T) const;
-  virtual Real c_from_v_e(Real v, Real e) const override;
 
   /**
    * Fluid name
@@ -342,6 +339,23 @@ public:
    */
   virtual void
   mu_from_p_T(Real p, Real T, Real & mu, Real & dmu_drho, Real & dmu_dT) const override;
+
+  /**
+   * Bulk Modulus from pressure and temperature
+   *
+   * @param p   pressure (Pa)
+   * @param T   temperature (K)
+   * @return Bulk Modules (N/m^2)
+   */
+  virtual Real bulk_modulus_from_p_T(Real p, Real T) const;
+  /**
+   * Speed of Sound from specific volume and specific internal energy
+   *
+   * @param[in] v   specific volume (m$^3$/kg)
+   * @param[in] e   specific internal energy (J/kg)
+   * @return [out] c speed of sound (m/s)
+   */
+  virtual Real c_from_v_e(Real v, Real e) const override;
 
 private:
   const Real _T_mo;
