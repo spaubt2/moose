@@ -1,0 +1,14 @@
+[Tests]
+  [lead]
+    type = CSVDiff
+    input = 'lead.i'
+    csvdiff = 'lead_out.csv'
+    threading = '!pthreads'
+  []
+  [lead_bismuth]
+    type = CSVDiff
+    input = 'lead_bismuth.i'
+    csvdiff = 'lead_bismuth_out.csv'
+    threading = '!pthreads'
+  []
+[]

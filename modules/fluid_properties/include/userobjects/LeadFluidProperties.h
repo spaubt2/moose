@@ -10,6 +10,7 @@
 #pragma once
 
 #include "SinglePhaseFluidProperties.h"
+#include "NewtonInversion.h"
 
 /**
  * Fluid properties for (Lead) \cite Fazio.
@@ -86,6 +87,14 @@ public:
    */
   virtual void
   T_from_p_rho(Real pressure, Real rho, Real & temperature, Real & dT_dp, Real & dT_drho) const;
+
+  /**
+   * Temperature from pressure and specific enthalpy
+   *
+   * @param[in] p          pressure (Pa)
+   * @param[in] h          specific enthalpy (J/kg)
+   */
+  virtual Real T_from_p_h(Real pressure, Real h) const override;
 
   /**
    * Isobaric specific heat from specific volume and specific internal energy

@@ -11,7 +11,6 @@
 #include "MooseUtils.h"
 #include "Conversion.h"
 #include "KDTree.h"
-#include "NewtonInversion.h"
 
 // C++ includes
 #include <fstream>

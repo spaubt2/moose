@@ -233,6 +233,16 @@ LeadFluidProperties::e_from_p_rho(Real p, Real rho, Real & e, Real & de_dp, Real
 }
 
 Real
+LeadFluidProperties::T_from_p_h(Real pressure, Real h) const
+{
+  auto lambda = [&](Real pressure, Real current_T, Real & new_h, Real & dh_dp, Real & dh_dT)
+  {
+    h_from_p_T(pressure, current_T, new_h, dh_dp, dh_dT);
+  };
+  return NewtonMethod::NewtonSolve(pressure, h, _T_initial_guess, _tolerance, lambda);
+}
+
+Real
 LeadFluidProperties::T_from_p_rho(Real /*pressure*/, Real rho) const
 {
   return (rho - 11441) / -1.2795;
