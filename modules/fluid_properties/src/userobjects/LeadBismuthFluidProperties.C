@@ -8,6 +8,7 @@
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
 #include "LeadBismuthFluidProperties.h"
+#include "NewtonInversion.h"
 
 registerMooseObject("FluidPropertiesApp", LeadBismuthFluidProperties);
 
@@ -297,6 +298,16 @@ LeadBismuthFluidProperties::T_from_p_rho(
   temperature = T_from_p_rho(pressure, rho);
   dT_dp = 0;
   dT_drho = 1 / -1.293;
+}
+
+Real
+LeadBismuthFluidProperties::T_from_p_h(Real pressure, Real h) const
+{
+  auto lambda = [&](Real pressure, Real current_T, Real & new_h, Real & dh_dp, Real & dh_dT)
+  {
+    h_from_p_T(pressure, current_T, new_h, dh_dp, dh_dT);
+  };
+  return NewtonMethod::NewtonSolve(pressure, h, _T_initial_guess, _tolerance, lambda);
 }
 
 Real

@@ -92,6 +92,13 @@ public:
   T_from_p_rho(Real pressure, Real rho, Real & temperature, Real & dT_dp, Real & dT_drho) const;
 
   /**
+   * Returns temperature from pressure and specific enthalpy
+   * @param[in] p          pressure (Pa)
+   * @param[in] h          specific enthalpy (J/kg)
+   */
+  virtual Real T_from_p_h(Real pressure, Real h) const override;
+
+  /**
    * Isobaric specific heat from specific volume and specific internal energy
    *
    * @param[in] v   specific volume (m$^3$/kg)
